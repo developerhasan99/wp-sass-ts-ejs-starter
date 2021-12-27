@@ -1,0 +1,12 @@
+$bgcolor: #333;
+
+body {
+  background-color: $bgcolor;
+  margin: 0;
+  h1 {
+    color: #fff;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 30px;
+  }
+}
