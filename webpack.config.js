@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const miniCssExtractorPlugin = require("mini-css-extract-plugin");
 
@@ -13,17 +14,24 @@ module.exports = {
       },
       {
         test: /\.scss?$/,
-        use: [
-          miniCssExtractorPlugin.loader,
-          // "style-loader",
-          "css-loader",
-          "sass-loader",
-        ],
+        use: [miniCssExtractorPlugin.loader, "css-loader", "sass-loader"],
         exclude: /node_modules/,
       },
       {
         test: /\.html?$/,
         loader: "html-loader",
+      },
+      {
+        test: /\.ejs$/,
+        use: {
+          loader: "ejs-compiled-loader",
+          options: {
+            htmlmin: true,
+            htmlminOptions: {
+              removeComments: true,
+            },
+          },
+        },
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -43,13 +51,13 @@ module.exports = {
     new miniCssExtractorPlugin(),
     // Every Page will add a new Instance for htmlWebpackPlugin
     new htmlWebpackPlugin({
-      template: "./src/index.ejs",
+      template: "src/pages/index.ejs",
       filename: "index.html",
     }),
-    new htmlWebpackPlugin({
-      template: "./src/about.ejs",
-      filename: "about.html",
-    }),
+    // new htmlWebpackPlugin({
+    //   template: "src/pages/about.ejs",
+    //   filename: "about.html",
+    // }),
   ],
   devServer: {
     static: {
@@ -58,9 +66,10 @@ module.exports = {
     compress: true,
     port: 9000,
     open: true,
+    hot: true,
+    watchFiles: ["src/**/*.ejs"],
   },
-  // devtool: "inline-source-map",
-  // mode: "development",
+  // devtool: false,
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },

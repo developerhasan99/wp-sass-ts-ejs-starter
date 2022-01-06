@@ -1,7 +1,11 @@
-import { addNum } from "./addNum";
 import "../sass/style.scss";
 
-import "../images/fb.jpg";
-var result = addNum(10, 15);
+interface myType {
+  name: string;
+  email: string;
+}
 
-console.log(result);
+const myobj: myType = {
+  name: "Mehedi Hasan",
+  email: "developerhasan@gmail.com",
+};

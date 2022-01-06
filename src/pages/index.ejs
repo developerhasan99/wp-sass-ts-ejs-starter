@@ -1,0 +1,27 @@
+<% 
+
+const header = require("./partials/header.ejs")
+const footer = require("./partials/footer.ejs") 
+
+const headerData = {title: "Webpack, Typescript, EJS, and SASS starter project!" }
+
+%>
+
+  <%- header(headerData) %>
+
+    <div class="container">
+      <div class="contents">
+        <img src="<%- require('../images/webpack.svg') %> " alt="Webpack logo">
+        <h1 class="hello-title">Hello Webpack!</h1>
+        <p class="description-text">this is a starter project for Webpack, Typescript, EJS, and SASS starter project!
+        </p>
+
+        <p>Clone this repository.</p>
+        <p>Run <code>npm install</code> in your terminal.</p>
+        <p>Then run <code>npm start</code>.</p>
+        <p>To build your project run <code>npm run build</code></p>
+
+      </div>
+    </div>
+
+  <%- footer() %> 
